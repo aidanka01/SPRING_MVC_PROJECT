@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Course</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+</head>
+<body >
+
+<form th:action="@{/courses/{id}(id=${course.getId()})}"
+      th:object="${course}"
+      th:method="patch"
+      style="text-align:center; margin-top:100px; font-size: 60px;">
+    <div>
+
+        <input th:field="*{courseName}" ></div>
+    <div>
+        <input th:field="*{duration}">
+    </div>
+    <div>
+        <input type="submit" value="update">
+    </div>
+</form>
+
+</body>
+</html>

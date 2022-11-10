@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Student</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+</head>
+<body>
+<form th:method="patch" th:action="@{/students/saveUpdateStudent}" th:object="${student}"
+      style="text-align:center; margin-top:200px; font-size: 30px;">
+    <input type="hidden" name="id" th:field="*{id}">
+    <input type="text" name="firstName" th:field="*{firstName}" placeholder="First Name">
+    <br><br>
+    <input type="text" name="lastName" th:field="*{lastName}" placeholder="Last Name">
+    <input type="text" name="email" th:field="*{email}" placeholder="Email">
+    <br><br>
+    <label> ONLINE
+        <input type="checkbox" th:value="ONLINE" th:field="*{studyFormat}">
+    </label>
+    <label> OFFLINE
+        <input type="checkbox" th:value="OFFLINE" th:field="*{studyFormat}">
+    </label>
+    <select th:field="${student.groupId}">
+        <option th:each="groups:${groupList}"
+                th:value="${groups}"
+                th:text="${groups.getGroupName()}"></option>
+    </select>
+
+    <input type="submit" value="Update">
+</form>
+</body>
+</html>

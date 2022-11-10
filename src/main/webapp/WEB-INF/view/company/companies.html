@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:method="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Companies</title>
+   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">-->
+    <style>table,
+    td {
+        border: 6px solid whitesmoke;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 20px;
+    }
+    thead,
+    tfoot {
+        background-color: #f5f52a;
+        color: #2424fd;
+    }
+    body {
+        background-size: cover;
+        background-image: url(https://img.freepik.com/free-photo/3d-render-of-a-low-poly-plexus-design-network-communications_1048-14542.jpg?w=740&t=st=1667729218~exp=1667729818~hmac=b3ebdc3f6d9fb9fe334a04e2e7a6738ce67d1c286db09d1b4d4be5761dceee29);
+    }
+    </style>
+    <style>
+        table, th, td {
+            border: 1px solid wheat;
+            padding: 30px;
+        }
+    </style>
+
+</head>
+<body>
+
+
+<table class="table table-bordered ">
+    <thead class="table-white">
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Company name</th>
+        <th scope="col">Located country</th>
+        <th scope="col" >Courses</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody class="table-success">
+    <tr th:each="company : ${companies}">
+        <td th:text="${company.id}"></td>
+        <td th:text="${company.companyName}"></td>
+        <td th:text="${company.locatedCountry}"></td>
+        <td><a th:href="@{/courses}">
+            <button style="height: 40px; width: 90px; background-color:#2424fd;border: 2px solid #e7e7e7;" th:method="get">Courses</button>
+        </a>
+        </td>
+        <td><a th:method="get" th:href="@{/companies/updateCompany/{id}(id=${company.id})}">
+            <button style="height: 40px; width: 80px; background-color:#4747fa;  border: 2px solid #e7e7e7;">Update</button>
+        </a>
+        </td>
+        <td><form th:method="DELETE" th:action="@{/companies/{id}(id=${company.id})}">
+            <input type="submit" value="Delete" style="height: 40px; width: 90px; background-color:red;border: 2px solid #e7e7e7;"/></form></td>
+
+
+    </tr>
+    </tbody>
+</table>
+<br><br>
+<input style=" display: block; margin:auto ; font-size:30px;" {bor} type="button" value="Add new company"
+       onclick="window.location.href = 'companies/addCompany'">
+</body>
+</html>

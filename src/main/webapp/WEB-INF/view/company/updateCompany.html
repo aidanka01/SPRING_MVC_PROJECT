@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+</head>
+
+<body>
+
+
+<form class="form"
+      th:method="patch"
+      th:action="@{/companies/companyUpdate/{id}(id=${company.id})}"
+      th:object="${company}"
+      style="text-align:center; margin-top:200px; font-size: 40px;" >
+
+
+
+    <input type="hidden" name="companyId" th:field="*{id}" placeholder="company Id">
+    <label>
+        <input type="text" name="companyName" th:field="*{companyName}" placeholder="Company Name">
+    </label>
+    <br><br>
+    <label>
+        <input type="text" name="locatedCountry" th:field="*{locatedCountry}" placeholder="Located Country">
+    </label>
+    <br><br>
+    <input type="submit" value="Update">
+</form>
+
+</body>
+</html>

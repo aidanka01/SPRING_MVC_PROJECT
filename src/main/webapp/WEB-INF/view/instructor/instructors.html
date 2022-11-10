@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Instructors</title>
+
+    <style>
+        table, td {
+            border: 6px solid #333;
+            margin-top: 70px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 20px;
+            cursor: auto;
+        }
+
+        thead,
+        tfoot {
+            background-color: #f5f52a;
+            color: #2424fd;
+        }
+
+        body {
+            background-size: cover;
+            background-image: url(https://img.freepik.com/free-photo/3d-render-background-design-network-communications_1048-14036.jpg?w=740&t=st=1667753916~exp=1667754516~hmac=8389d40e395e57bc9e0910e7381c6f373464cdd54436222a01e8d18f490c598d);
+        }
+    </style>
+    <style>
+        table, th, td {
+            border: 1px solid wheat;
+            padding: 20px;
+        }
+    </style>
+
+</head>
+<body>
+
+<table class="table table-bordered ">
+    <thead class="table-white">
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Firstname</th>
+        <th scope="col">Lastname</th>
+        <th scope="col">email</th>
+        <th scope="col">Course</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody class="table-success">
+    <tr th:each="instructor: ${instructors}">
+        <td th:text="${instructor.id}"></td>
+        <!--        <td th:text="${instructor.getCourse().getId()}"></td>-->
+        <td th:text="${instructor.firstName}"></td>
+        <td th:text="${instructor.lastName}"></td>
+        <td th:text="${instructor.email}"></td>
+        <td th:text="${instructor.getCourse.getCourseName()}"></td>
+
+        <td><a th:href="@{/instructors/updateInstructor/{id}(id=${instructor.id})}">
+            <button style="height: 40px; width: 80px; background-color:#2424fd;">Update</button>
+        </a>
+        </td>
+        <td>
+            <form th:action="@{/instructors/deleteInstuctor/(instructorId=${instructor.id})}" th:method="delete"
+                  onclick="return confirm('Are you sure you want to delete this teacher?');">
+                <button style="height: 40px; width: 80px; background-color:red;">delete</button>
+
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br><br><br><br>
+<input style=" display: block; margin:auto; font-size:30px;" type="button" value="Add Instructor"
+       onclick="window.location.href = 'instructors/addInstructor' ">
+</body>
+</html>

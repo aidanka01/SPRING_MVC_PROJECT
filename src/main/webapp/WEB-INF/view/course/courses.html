@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+    <style>table,
+    td {
+        border: 6px solid #333;
+        margin-top: 70px;
+        margin-left: 60px;
+        margin-right: 60px;
+        font-size: 15px;
+    }
+    thead,
+    tfoot {
+        background-color: #f5f52a;
+        color: #2424fd;
+    }
+
+        body{
+            background-size: cover;
+            background-image: url(https://img.freepik.com/free-photo/abstract-dark-blue-futuristic-digital-grid-background_53876-104051.jpg?w=740&t=st=1667486304~exp=1667486904~hmac=f3d8c142c2a76e719a0609863a2ba41694bcd77118af175008856c962352ffda);
+        }
+    </style>
+    <style>
+        table, th, td {
+            border: 3px solid #6767f5;
+            padding: 20px;
+        }
+    </style>
+
+</head>
+    <body>
+
+    <table class="table table-bordered ">
+        <thead class="table-gray">
+
+
+
+        <tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Course Name</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Company</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+        <tbody class="table-success">
+
+    <tr th:each="course:${courses}">
+        <td th:text="${course.id}"></td>
+        <td th:text="${course.courseName}"></td>
+        <td th:text="${course.duration}"></td>
+        <td><a th:text="${course.getCompany().getCompanyName()}">
+        </a>
+        </td>
+        <td>
+            <a th:method="get" th:href="@{/courses/updateCourse/{id}(id=${course.id})}">
+            <button style="height: 40px; width: 90px; background-color:#2424fd;">Update</button>
+            </a>
+        </td>
+        <td><form th:method="DELETE" th:action="@{/courses/{id}(id=${course.id})}">
+            <input type="submit" value="Delete" style="height: 40px; width: 90px; background-color:red;"/></form></td>
+
+    </tr>
+        </tbody>
+    </table>
+<input style=" display: block; margin:auto; font-size:30px;" type="button" value="Add Course"
+       onclick="window.location.href = 'courses/addCourse'">
+
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All groups</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+
+    <style>table,
+    td {
+        border: 1px solid #f5f52a;
+        margin-top: 70px;
+        margin-left:10px;
+        margin-right: 70px;
+        font-size: 15px;
+    }
+    thead,
+    tfoot {
+        background-color: #f6f65b;
+        color: #2424fd;
+    }
+    body {
+        background-size: cover;
+        background-image: url(https://img.freepik.com/free-vector/gradient-network-connection-background_23-2148865392.jpg?w=740&t=st=1667484135~exp=1667484735~hmac=85d986fead9ec17acadb386bbcc8900ff9f55d79fe262a49a05651a4d236b415);
+    }
+    </style>
+    <style>
+        table, th, td {
+            border: 1px solid #f6f65b;
+            padding: 10px;
+        }
+    </style>
+
+</head>
+<body>
+<table class="table table-bordered">
+    <thead class="table-gray">
+    <tr>
+        <tr>
+
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Date of start</th>
+        <th scope="col">Date of finish</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody class="table-success">
+
+    <tr th:each="group:${groups}">
+        <th  th:text="${group.id}"></th>
+        <td th:text="${group.groupName}"></td>
+        <td th:text="${group.dateOfStart}"></td>
+        <td th:text="${group.dateOfFinish}"></td>
+
+        <td>
+            <a th:method="get" th:href="@{/groups/updateGroup/{id}(id=${group.id})}">
+                <button style="height: 40px; width: 90px; background-color:#2424fd;">Update</button>
+            </a>
+        </td>
+        <td><form th:method="DELETE" th:action="@{/groups/{id}(id=${group.id})}">
+            <input type="submit" value="delete" style="height: 40px; width: 90px; background-color:red;"/></form></td>
+
+    </tr>
+    </tbody>
+</table>
+<input style=" display: block; margin:auto; font-size:30px;" type="button" value="Add Group"
+       onclick="window.location.href = 'groups/addGroup'">
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+
+    <style>table,
+    td {
+        border: 6px solid blue;
+        margin-top: 70px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 20px;
+
+    }
+
+    thead,
+    tfoot {
+        background-color: #f5f52a;
+        color: #2424fd;
+    }
+
+    body {
+        background-size: cover;
+        background-image: url(https://img.freepik.com/premium-photo/abstract-blue-blurred-geometry-wireframe-network-connecting-dot-space-background_10307-1158.jpg?w=826);
+    }
+    </style>
+    <style>
+        table, th, td {
+            border: 1px solid #4747fa;
+            padding: 30px;
+        }
+
+    </style>
+</head>
+<table class="table table-border ">
+    <thead class="table-white">
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Format</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody class="table-success">
+    <tr th:each=" student: ${students}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.firstName }"></td>
+        <td th:text="${student.lastName}"></td>
+        <td th:text="${student.email}"></td>
+        <td th:text="${student.studyFormat}"></td>
+
+        <td><a th:href="@{/students/updateStudent/{id}(id=${student.id})}">
+            <button style="height: 40px; width: 90px; background-color:#2424fd;">Update</button>
+        </a>
+        </td>
+        <td><a th:href="@{/students/deleteStudent/(studentId=${student.id})}" th:method="delete"
+               onclick="return confirm('Are you sure you want to delete this student?');">
+            <button style="height: 40px; width: 80px; background-color:red;">Delete</button>
+        </a></td>
+    </tr>
+    </tbody>
+</table>
+<br><br><br><br>
+<input style=" display: block; margin:auto; font-size:30px;" type="button" value="Add Student"
+       onclick="window.location.href = 'students/addStudent' ">
+
+</body>
+</html>
